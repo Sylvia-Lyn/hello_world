@@ -138,19 +138,16 @@ export default {
         .catch(function (error) {
           console.log(error.response);
         });
-      if(ret.status!=200){
-        console.log('error');
-      }
     },
     handle:async function(){
-      await this.$axios.post("topic/publishtopic",{
+      var ret = await this.$axios.post('http://localhost:8080/topic/publishtopic',{
         context:this.context,
         description:this.description,
         tag:this.tag,
-      }).then(function (response) {
+      }).then(response=>{
         console.log(response)})
         .catch(function (error) {
-          console.log(error.response);
+          console.log(error);
         });
       console.log("发布主题帖成功");
     },

@@ -95,7 +95,13 @@ export default {
         console.log(response);
         alert(response.data.msg);
         if(response.data.msg==='登录成功'){
-          return this.$router.push({path: '/square'})}
+          this.token=response.data.token;
+          console.log(this.token);
+          // this.$store.commit('set_token', this.token);
+          return this.$router.push({path: '/square'});
+          window.localStorage.setItem('token', token);
+          window.location.pathname = '/';
+          }
         else{
           this.name='';
           this.password='';
