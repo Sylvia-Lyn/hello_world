@@ -300,28 +300,44 @@ export default {
     }
   },
   methods:{
-    orderPots:async function(){
-      if(this.order==='DESC'){
-        this.order='ASC';
-      }
-      else{
-        this.order='DESC';
-      }
-      queryData();
-    },
+    // orderPots:async function(){
+    //   if(this.order==='DESC'){
+    //     this.order='ASC';
+    //   }
+    //   else{
+    //     this.order='DESC';
+    //   }
+    //   this.queryData();
+    // },
     queryData:async function(){
       var ret = await this.$axios.post('http://localhost:8080/topic/getAllTopic',{
         order:this.order,
-      }).then(function (response) {
-        console.log(response)})
-        .catch(function (error) {
-          console.log(error.response);
+      }).then(response=>{
+        this.topicList=response.data;
+        console.log(this.topicList);
+        console.log(this.topicList.value);
+      }).catch(function (error) {
+          console.log("error.response:"+error);
         });
-      this.topicList=ret.data.topicList;
     },
   },
   mounted:function(){
-    this.queryData();
+    // this.queryData();
+    var data = [{
+      topicid: 1,
+      context: "电灯泡",
+      description: "现代社会用",
+      tag: "设备",
+      date: "2020-03-25T13:56:11.000 0800",
+    },{
+
+    },{
+
+    },{
+
+    }];
+    this.topicList = data;
+    console.log(this.topicList);
   }
 }
 </script>

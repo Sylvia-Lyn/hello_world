@@ -125,7 +125,7 @@ export default {
   },
   methods:{
     handle:async function(){
-      await this.$axios.post("user/signup",{
+      await this.$axios.post("user/register",{
         name:this.name,
         password:this.password,
       }).then(function (response) {
@@ -133,7 +133,8 @@ export default {
         .catch(function (error) {
         console.log(error.response);
       });
-    }
+      this.$router.push({path: '/square'});
+    },
   }
 }
 </script>
